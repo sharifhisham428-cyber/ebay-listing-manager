@@ -15,29 +15,27 @@
   <style>
     /* ── Design Tokens ─────────────────────────────────────── */
     :root {
-      --bg:          #0f1117;
-      --bg2:         #16191f;
-      --bg3:         #1d2129;
-      --border:      #2a2f3a;
-      --accent:      #e63946;
-      --accent2:     #ff6b35;
-      --green:       #2ec4b6;
-      --yellow:      #f9c74f;
-      --text:        #e8eaf0;
-      --muted:       #7a8194;
-      --mono:        'Space Mono', monospace;
-      --sans:        'DM Sans', sans-serif;
-      --radius:      10px;
-      --radius-lg:   18px;
-      --shadow:      0 4px 24px rgba(0,0,0,.45);
-      --trans:       .18s ease;
+      --bg:        #0f1117;
+      --bg2:       #16191f;
+      --bg3:       #1d2129;
+      --border:    #2a2f3a;
+      --accent:    #e63946;
+      --accent2:   #ff6b35;
+      --green:     #2ec4b6;
+      --yellow:    #f9c74f;
+      --blue:      #4a9eff;
+      --text:      #e8eaf0;
+      --muted:     #7a8194;
+      --mono:      'Space Mono', monospace;
+      --sans:      'DM Sans', sans-serif;
+      --radius:    10px;
+      --radius-lg: 18px;
+      --shadow:    0 4px 24px rgba(0,0,0,.45);
+      --trans:     .18s ease;
     }
 
-    /* ── Reset ──────────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
     body {
       font-family: var(--sans);
       background: var(--bg);
@@ -46,35 +44,22 @@
       overflow-x: hidden;
     }
 
-    /* ── Top Nav ────────────────────────────────────────────── */
+    /* ── Header ─────────────────────────────────────────────── */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
+      position: sticky; top: 0; z-index: 100;
       background: rgba(15,17,23,.92);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border);
-      padding: 0 16px;
-      height: 58px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      padding: 0 16px; height: 58px;
+      display: flex; align-items: center; justify-content: space-between;
     }
-
     .logo {
-      font-family: var(--mono);
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: .04em;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      font-family: var(--mono); font-size: 14px; font-weight: 700;
+      letter-spacing: .04em; display: flex; align-items: center; gap: 8px;
     }
-    .logo span.dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-      display: inline-block;
+    .logo .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent); display: inline-block;
       animation: pulse 2s infinite;
     }
     @keyframes pulse {
@@ -82,29 +67,20 @@
       50%      { opacity:.5; transform:scale(.8); }
     }
 
-    /* bottom tab nav */
+    /* ── Bottom Tab Bar ──────────────────────────────────────── */
     .tab-bar {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(15,17,23,.96);
-      backdrop-filter: blur(16px);
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(15,17,23,.96); backdrop-filter: blur(16px);
       border-top: 1px solid var(--border);
-      display: flex;
-      height: 62px;
+      display: flex; height: 62px;
       padding-bottom: env(safe-area-inset-bottom);
     }
     .tab-btn {
-      flex: 1;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 3px;
+      flex: 1; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 3px;
       background: none; border: none; cursor: pointer;
-      color: var(--muted);
-      font-family: var(--sans);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: .03em;
+      color: var(--muted); font-family: var(--sans);
+      font-size: 10px; font-weight: 500; letter-spacing: .03em;
       transition: color var(--trans);
     }
     .tab-btn svg { transition: transform var(--trans); }
@@ -112,133 +88,84 @@
     .tab-btn.active svg { transform: translateY(-2px); }
     .tab-btn:hover { color: var(--text); }
 
-    /* ── Page Container ─────────────────────────────────────── */
+    /* ── Main / Pages ────────────────────────────────────────── */
     main {
       padding: 16px 16px 80px;
-      max-width: 640px;
-      margin: 0 auto;
+      max-width: 640px; margin: 0 auto;
     }
-
     .page { display: none; animation: fadeUp .25s ease; }
     .page.active { display: block; }
-
     @keyframes fadeUp {
       from { opacity:0; transform:translateY(12px); }
       to   { opacity:1; transform:translateY(0); }
     }
 
-    /* ── Section Heading ────────────────────────────────────── */
     .section-title {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 14px;
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 14px;
     }
 
-    /* ── Dashboard Cards ────────────────────────────────────── */
+    /* ── Dashboard Stats ─────────────────────────────────────── */
     .stat-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-bottom: 18px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 10px; margin-bottom: 18px;
     }
+    @media (min-width: 420px) { .stat-grid { grid-template-columns: repeat(4,1fr); } }
+
     .stat-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 18px 16px;
-      position: relative;
-      overflow: hidden;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 18px 16px;
+      position: relative; overflow: hidden;
     }
     .stat-card::after {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; border-radius: var(--radius-lg) var(--radius-lg) 0 0;
     }
-    .stat-card.total::after   { background: var(--accent2); }
-    .stat-card.listed::after  { background: var(--green); }
-    .stat-card.unlisted::after{ background: var(--accent); }
-    .stat-card.target::after  { background: var(--yellow); }
+    .stat-card.total::after    { background: var(--accent2); }
+    .stat-card.listed::after   { background: var(--green); }
+    .stat-card.unlisted::after { background: var(--accent); }
+    .stat-card.target::after   { background: var(--yellow); }
 
     .stat-label {
-      font-size: 10px;
-      font-family: var(--mono);
-      text-transform: uppercase;
-      letter-spacing: .1em;
-      color: var(--muted);
-      margin-bottom: 8px;
+      font-size: 10px; font-family: var(--mono); text-transform: uppercase;
+      letter-spacing: .1em; color: var(--muted); margin-bottom: 8px;
     }
     .stat-value {
-      font-family: var(--mono);
-      font-size: 34px;
-      font-weight: 700;
-      line-height: 1;
+      font-family: var(--mono); font-size: 34px; font-weight: 700; line-height: 1;
     }
-    .stat-card.total   .stat-value { color: var(--accent2); }
-    .stat-card.listed  .stat-value { color: var(--green); }
-    .stat-card.unlisted .stat-value{ color: var(--accent); }
-    .stat-card.target  .stat-value { color: var(--yellow); }
+    .stat-card.total    .stat-value { color: var(--accent2); }
+    .stat-card.listed   .stat-value { color: var(--green); }
+    .stat-card.unlisted .stat-value { color: var(--accent); }
+    .stat-card.target   .stat-value { color: var(--yellow); }
 
-    /* Target Banner */
     .target-banner {
-      border-radius: var(--radius-lg);
-      padding: 14px 18px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 18px;
-      font-weight: 600;
-      font-size: 13px;
+      border-radius: var(--radius-lg); padding: 14px 18px;
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 18px; font-weight: 600; font-size: 13px;
       border: 1px solid transparent;
     }
-    .target-banner.achieved {
-      background: rgba(46,196,182,.12);
-      border-color: rgba(46,196,182,.3);
-      color: var(--green);
-    }
-    .target-banner.not-achieved {
-      background: rgba(230,57,70,.12);
-      border-color: rgba(230,57,70,.3);
-      color: var(--accent);
-    }
+    .target-banner.achieved    { background: rgba(46,196,182,.12); border-color: rgba(46,196,182,.3); color: var(--green); }
+    .target-banner.not-achieved{ background: rgba(230,57,70,.12);  border-color: rgba(230,57,70,.3);  color: var(--accent); }
     .target-banner .icon { font-size: 20px; }
 
     /* ── Form ───────────────────────────────────────────────── */
     .form-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 20px;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 20px;
     }
-
     .form-group { margin-bottom: 14px; }
-
     .form-group label {
-      display: block;
-      font-size: 11px;
-      font-family: var(--mono);
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      color: var(--muted);
-      margin-bottom: 6px;
+      display: block; font-size: 11px; font-family: var(--mono);
+      text-transform: uppercase; letter-spacing: .08em;
+      color: var(--muted); margin-bottom: 6px;
     }
-
     .form-group input,
     .form-group textarea {
-      width: 100%;
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      color: var(--text);
-      font-family: var(--sans);
-      font-size: 14px;
-      padding: 10px 13px;
-      outline: none;
-      transition: border-color var(--trans), box-shadow var(--trans);
+      width: 100%; background: var(--bg3); border: 1px solid var(--border);
+      border-radius: var(--radius); color: var(--text);
+      font-family: var(--sans); font-size: 14px; padding: 10px 13px;
+      outline: none; transition: border-color var(--trans), box-shadow var(--trans);
     }
     .form-group textarea { resize: vertical; min-height: 80px; }
     .form-group input:focus,
@@ -249,318 +176,262 @@
     .form-group input::placeholder,
     .form-group textarea::placeholder { color: #3e4554; }
 
-    /* supplier row */
-    .supplier-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+    /* currency prefix input */
+    .input-prefix {
+      display: flex; align-items: center;
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: border-color var(--trans), box-shadow var(--trans);
     }
+    .input-prefix:focus-within {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(230,57,70,.15);
+    }
+    .input-prefix span {
+      padding: 0 10px 0 13px; font-family: var(--mono);
+      font-size: 12px; color: var(--muted); white-space: nowrap;
+      border-right: 1px solid var(--border); line-height: 40px;
+    }
+    .input-prefix input {
+      border: none !important; background: transparent !important;
+      box-shadow: none !important; border-radius: 0 var(--radius) var(--radius) 0;
+      flex: 1;
+    }
+
+    .supplier-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .form-divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+    .form-section-label {
+      font-size: 10px; font-family: var(--mono); letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
+    }
+
+    /* price row: USD + RM side by side */
+    .price-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
     /* ── Buttons ────────────────────────────────────────────── */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      font-family: var(--sans);
-      font-size: 13px;
-      font-weight: 600;
-      border-radius: var(--radius);
-      border: none;
-      cursor: pointer;
-      transition: all var(--trans);
-      white-space: nowrap;
-      padding: 9px 16px;
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 7px; font-family: var(--sans); font-size: 13px; font-weight: 600;
+      border-radius: var(--radius); border: none; cursor: pointer;
+      transition: all var(--trans); white-space: nowrap; padding: 9px 16px;
     }
     .btn:active { transform: scale(.97); }
 
     .btn-primary {
-      background: var(--accent);
-      color: #fff;
-      width: 100%;
-      padding: 13px;
-      font-size: 14px;
+      background: var(--accent); color: #fff;
+      width: 100%; padding: 13px; font-size: 14px;
       border-radius: var(--radius-lg);
     }
     .btn-primary:hover { background: #c1121f; }
     .btn-primary:disabled { opacity: .5; cursor: not-allowed; }
 
     .btn-listed {
-      background: rgba(46,196,182,.15);
-      color: var(--green);
+      background: rgba(46,196,182,.15); color: var(--green);
       border: 1px solid rgba(46,196,182,.3);
-      font-size: 11px;
-      padding: 6px 10px;
+      font-size: 11px; padding: 6px 10px;
     }
     .btn-listed:hover { background: rgba(46,196,182,.25); }
 
     .btn-copy {
-      background: rgba(249,199,79,.12);
-      color: var(--yellow);
+      background: rgba(249,199,79,.12); color: var(--yellow);
       border: 1px solid rgba(249,199,79,.25);
-      font-size: 11px;
-      padding: 6px 10px;
+      font-size: 11px; padding: 6px 10px;
     }
     .btn-copy:hover { background: rgba(249,199,79,.22); }
 
+    .btn-edit {
+      background: rgba(74,158,255,.12); color: var(--blue);
+      border: 1px solid rgba(74,158,255,.25);
+      font-size: 11px; padding: 6px 10px;
+    }
+    .btn-edit:hover { background: rgba(74,158,255,.22); }
+
     .btn-ghost {
-      background: var(--bg3);
-      color: var(--muted);
+      background: var(--bg3); color: var(--muted);
       border: 1px solid var(--border);
     }
     .btn-ghost:hover { color: var(--text); border-color: #3e4554; }
 
-    /* ── Search + Filter Bar ────────────────────────────────── */
-    .toolbar {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 14px;
+    .btn-save {
+      background: var(--blue); color: #fff;
+      flex: 1; padding: 11px;
     }
-    .search-wrap {
-      flex: 1;
-      position: relative;
+    .btn-save:hover { background: #2e88ee; }
+    .btn-save:disabled { opacity: .5; cursor: not-allowed; }
+
+    .btn-cancel {
+      background: var(--bg3); color: var(--muted);
+      border: 1px solid var(--border); flex: 1; padding: 11px;
     }
+    .btn-cancel:hover { color: var(--text); }
+
+    /* ── Toolbar ────────────────────────────────────────────── */
+    .toolbar { display: flex; gap: 8px; margin-bottom: 14px; }
+    .search-wrap { flex: 1; position: relative; }
     .search-wrap svg {
-      position: absolute;
-      left: 10px; top: 50%;
-      transform: translateY(-50%);
-      pointer-events: none;
-      color: var(--muted);
+      position: absolute; left: 10px; top: 50%;
+      transform: translateY(-50%); pointer-events: none; color: var(--muted);
     }
     .search-wrap input {
-      width: 100%;
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      color: var(--text);
-      font-family: var(--sans);
-      font-size: 13px;
-      padding: 9px 13px 9px 34px;
-      outline: none;
+      width: 100%; background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); color: var(--text);
+      font-family: var(--sans); font-size: 13px;
+      padding: 9px 13px 9px 34px; outline: none;
       transition: border-color var(--trans);
     }
     .search-wrap input:focus { border-color: var(--accent); }
     .search-wrap input::placeholder { color: #3e4554; }
-
     .filter-select {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      color: var(--text);
-      font-family: var(--sans);
-      font-size: 12px;
-      padding: 9px 10px;
-      outline: none;
-      cursor: pointer;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); color: var(--text);
+      font-family: var(--sans); font-size: 12px;
+      padding: 9px 10px; outline: none; cursor: pointer;
     }
 
     /* ── Product Cards ──────────────────────────────────────── */
     .product-list { display: flex; flex-direction: column; gap: 10px; }
 
     .product-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 15px;
-      transition: border-color var(--trans);
-      animation: fadeUp .2s ease;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 15px;
+      transition: border-color var(--trans); animation: fadeUp .2s ease;
     }
     .product-card:hover { border-color: #3a3f4e; }
 
     .card-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 10px;
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 10px; margin-bottom: 10px;
     }
     .card-id {
-      font-family: var(--mono);
-      font-size: 10px;
-      color: var(--muted);
-      letter-spacing: .06em;
+      font-family: var(--mono); font-size: 10px;
+      color: var(--muted); letter-spacing: .06em;
     }
-    .card-name {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--text);
-      line-height: 1.3;
-      flex: 1;
+    .card-name { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.3; flex: 1; }
+
+    /* price block: USD prominent, RM cost small below */
+    .card-prices { text-align: right; flex-shrink: 0; }
+    .card-price-usd {
+      font-family: var(--mono); font-size: 15px;
+      font-weight: 700; color: var(--accent2);
     }
-    .card-price {
-      font-family: var(--mono);
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--accent2);
-      flex-shrink: 0;
+    .card-price-rm {
+      font-family: var(--mono); font-size: 10px;
+      color: var(--muted); margin-top: 2px;
     }
 
-    /* status badge */
     .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 10px;
-      font-family: var(--mono);
-      font-weight: 700;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      padding: 3px 9px;
-      border-radius: 20px;
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 10px; font-family: var(--mono); font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 20px;
     }
-    .badge::before {
-      content: '';
-      width: 5px; height: 5px;
-      border-radius: 50%;
-    }
-    .badge.listed {
-      background: rgba(46,196,182,.12);
-      color: var(--green);
-      border: 1px solid rgba(46,196,182,.25);
-    }
+    .badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; }
+    .badge.listed      { background: rgba(46,196,182,.12); color: var(--green); border: 1px solid rgba(46,196,182,.25); }
     .badge.listed::before { background: var(--green); }
-    .badge.not-listed {
-      background: rgba(230,57,70,.10);
-      color: var(--accent);
-      border: 1px solid rgba(230,57,70,.2);
-    }
+    .badge.not-listed  { background: rgba(230,57,70,.10);  color: var(--accent); border: 1px solid rgba(230,57,70,.2); }
     .badge.not-listed::before { background: var(--accent); }
 
     .card-meta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 10px;
+      display: flex; align-items: center; gap: 8px;
+      flex-wrap: wrap; margin-bottom: 10px;
     }
-    .card-date {
-      font-size: 11px;
-      color: var(--muted);
-      font-family: var(--mono);
-    }
+    .card-date { font-size: 11px; color: var(--muted); font-family: var(--mono); }
 
-    .card-actions {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      flex-wrap: wrap;
-    }
+    .card-actions { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; }
 
-    .supplier-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-      margin-top: 8px;
-    }
+    .supplier-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
     .supplier-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: rgba(255,107,53,.08);
-      border: 1px solid rgba(255,107,53,.2);
-      border-radius: 20px;
-      padding: 3px 9px;
-      font-size: 11px;
-      color: var(--accent2);
-      text-decoration: none;
-      transition: background var(--trans);
+      display: inline-flex; align-items: center; gap: 4px;
+      background: rgba(255,107,53,.08); border: 1px solid rgba(255,107,53,.2);
+      border-radius: 20px; padding: 3px 9px; font-size: 11px;
+      color: var(--accent2); text-decoration: none; transition: background var(--trans);
     }
     .supplier-chip:hover { background: rgba(255,107,53,.18); }
 
     .ebay-link {
-      font-size: 11px;
-      color: var(--muted);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
+      font-size: 11px; color: var(--muted); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 4px;
       transition: color var(--trans);
     }
     .ebay-link:hover { color: var(--accent2); }
 
-    /* ── Loading & Empty States ─────────────────────────────── */
+    /* ── Loading / Empty ────────────────────────────────────── */
     .loading-wrap {
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
-      padding: 60px 20px;
-      gap: 14px;
-      color: var(--muted);
-      font-size: 13px;
+      padding: 60px 20px; gap: 14px; color: var(--muted); font-size: 13px;
     }
     .spinner {
-      width: 32px; height: 32px;
-      border: 3px solid var(--border);
-      border-top-color: var(--accent);
-      border-radius: 50%;
+      width: 32px; height: 32px; border: 3px solid var(--border);
+      border-top-color: var(--accent); border-radius: 50%;
       animation: spin .7s linear infinite;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
-    .empty-state {
-      text-align: center;
-      padding: 50px 20px;
-      color: var(--muted);
-    }
+    .empty-state { text-align: center; padding: 50px 20px; color: var(--muted); }
     .empty-state .empty-icon { font-size: 40px; margin-bottom: 10px; }
     .empty-state p { font-size: 13px; }
 
-    /* ── Toast Notification ─────────────────────────────────── */
+    /* ── Edit Modal ─────────────────────────────────────────── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,.7); backdrop-filter: blur(6px);
+      display: flex; align-items: flex-end; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity .22s ease;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+    .modal-sheet {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      width: 100%; max-width: 640px;
+      padding: 20px 20px calc(20px + env(safe-area-inset-bottom));
+      max-height: 92vh; overflow-y: auto;
+      transform: translateY(40px);
+      transition: transform .22s ease;
+    }
+    .modal-overlay.open .modal-sheet { transform: translateY(0); }
+
+    .modal-handle {
+      width: 36px; height: 4px; background: var(--border);
+      border-radius: 2px; margin: 0 auto 18px;
+    }
+    .modal-title {
+      font-family: var(--mono); font-size: 12px;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 18px;
+    }
+    .modal-id {
+      font-family: var(--mono); font-size: 11px;
+      color: var(--accent2); margin-bottom: 16px;
+    }
+    .modal-actions { display: flex; gap: 10px; margin-top: 18px; }
+
+    /* ── Toast ──────────────────────────────────────────────── */
     #toast {
-      position: fixed;
-      bottom: 76px;
-      left: 50%;
+      position: fixed; bottom: 76px; left: 50%;
       transform: translateX(-50%) translateY(20px);
-      background: var(--bg3);
-      border: 1px solid var(--border);
-      color: var(--text);
-      font-size: 13px;
-      font-weight: 500;
-      padding: 11px 20px;
-      border-radius: 30px;
-      white-space: nowrap;
-      opacity: 0;
-      pointer-events: none;
-      transition: all .25s ease;
-      z-index: 999;
-      box-shadow: var(--shadow);
+      background: var(--bg3); border: 1px solid var(--border);
+      color: var(--text); font-size: 13px; font-weight: 500;
+      padding: 11px 20px; border-radius: 30px;
+      white-space: nowrap; opacity: 0; pointer-events: none;
+      transition: all .25s ease; z-index: 999; box-shadow: var(--shadow);
     }
-    #toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
+    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     #toast.success { border-color: rgba(46,196,182,.4); color: var(--green); }
     #toast.error   { border-color: rgba(230,57,70,.4);  color: var(--accent); }
-
-    /* ── Responsive ─────────────────────────────────────────── */
-    @media (min-width: 420px) {
-      .stat-grid { grid-template-columns: repeat(4,1fr); }
-    }
-
-    /* Divider line in forms */
-    .form-divider {
-      border: none;
-      border-top: 1px solid var(--border);
-      margin: 16px 0;
-    }
-    .form-section-label {
-      font-size: 10px;
-      font-family: var(--mono);
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
   </style>
 </head>
 <body>
 
-<!-- ── Header ──────────────────────────────────────────────── -->
+<!-- ── Header ─────────────────────────────────────────────── -->
 <header>
   <div class="logo">
     <span class="dot"></span>
     eBay Listing Manager
   </div>
-  <button class="btn btn-ghost" id="refreshBtn" style="padding:7px 12px;font-size:12px;" title="Refresh data">
+  <button class="btn btn-ghost" id="refreshBtn" style="padding:7px 12px;font-size:12px;" title="Refresh">
     <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
       <path d="M23 4v6h-6M1 20v-6h6"/>
       <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
@@ -568,13 +439,11 @@
   </button>
 </header>
 
-<!-- ── Main Content ─────────────────────────────────────────── -->
 <main>
 
-  <!-- ── Dashboard Page ──────────────────────────────────── -->
+  <!-- ── Dashboard ─────────────────────────────────────────── -->
   <section id="page-dashboard" class="page active">
     <p class="section-title">Overview</p>
-
     <div class="stat-grid">
       <div class="stat-card total">
         <div class="stat-label">Total</div>
@@ -599,17 +468,15 @@
       <span id="targetMsg">Loading target status…</span>
     </div>
 
-    <!-- Quick recent listed -->
-    <p class="section-title" style="margin-top:4px">Recently Listed</p>
+    <p class="section-title">Recently Listed</p>
     <div id="recentList" class="product-list">
       <div class="loading-wrap"><div class="spinner"></div><span>Loading…</span></div>
     </div>
   </section>
 
-  <!-- ── Products Page ────────────────────────────────────── -->
+  <!-- ── Products ──────────────────────────────────────────── -->
   <section id="page-products" class="page">
     <p class="section-title">All Products</p>
-
     <div class="toolbar">
       <div class="search-wrap">
         <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -623,13 +490,12 @@
         <option value="LISTED">Listed</option>
       </select>
     </div>
-
     <div id="productList" class="product-list">
       <div class="loading-wrap"><div class="spinner"></div><span>Loading…</span></div>
     </div>
   </section>
 
-  <!-- ── Add Product Page ─────────────────────────────────── -->
+  <!-- ── Add Product ───────────────────────────────────────── -->
   <section id="page-add" class="page">
     <p class="section-title">New Product</p>
     <div class="form-card">
@@ -639,9 +505,22 @@
         <input type="text" id="f_name" placeholder="e.g. Wireless Earbuds Pro" />
       </div>
 
-      <div class="form-group">
-        <label>Price (RM / USD)</label>
-        <input type="number" step="0.01" id="f_price" placeholder="0.00" />
+      <!-- Price USD + Cost RM side by side -->
+      <div class="price-row">
+        <div class="form-group">
+          <label>Selling Price (USD)</label>
+          <div class="input-prefix">
+            <span>USD</span>
+            <input type="number" step="0.01" id="f_price" placeholder="0.00" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Product Cost (RM)</label>
+          <div class="input-prefix">
+            <span>RM</span>
+            <input type="number" step="0.01" id="f_cost" placeholder="0.00" />
+          </div>
+        </div>
       </div>
 
       <div class="form-group">
@@ -656,41 +535,36 @@
 
       <hr class="form-divider" />
       <p class="form-section-label">Supplier Contacts (WhatsApp links or numbers)</p>
-
       <div class="supplier-grid">
         <div class="form-group">
           <label>Supplier 1</label>
-          <input type="text" id="f_s1" placeholder="https://wa.me/60123…" />
+          <input type="text" id="f_s1" placeholder="https://wa.me/…" />
         </div>
         <div class="form-group">
           <label>Supplier 2</label>
-          <input type="text" id="f_s2" placeholder="https://wa.me/60123…" />
+          <input type="text" id="f_s2" placeholder="https://wa.me/…" />
         </div>
         <div class="form-group">
           <label>Supplier 3</label>
-          <input type="text" id="f_s3" placeholder="https://wa.me/60123…" />
+          <input type="text" id="f_s3" placeholder="https://wa.me/…" />
         </div>
         <div class="form-group">
           <label>Supplier 4</label>
-          <input type="text" id="f_s4" placeholder="https://wa.me/60123…" />
+          <input type="text" id="f_s4" placeholder="https://wa.me/…" />
         </div>
         <div class="form-group" style="grid-column:1/-1">
           <label>Supplier 5</label>
-          <input type="text" id="f_s5" placeholder="https://wa.me/60123…" />
+          <input type="text" id="f_s5" placeholder="https://wa.me/…" />
         </div>
       </div>
-
       <hr class="form-divider" />
-
-      <button class="btn btn-primary" id="submitBtn" onclick="submitProduct()">
-        Add Product
-      </button>
+      <button class="btn btn-primary" id="submitBtn" onclick="submitProduct()">Add Product</button>
     </div>
   </section>
 
 </main>
 
-<!-- ── Bottom Tab Bar ────────────────────────────────────────── -->
+<!-- ── Bottom Tabs ────────────────────────────────────────── -->
 <nav class="tab-bar">
   <button class="tab-btn active" id="tab-dashboard" onclick="showPage('dashboard')">
     <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -715,42 +589,79 @@
   </button>
 </nav>
 
-<!-- ── Toast ─────────────────────────────────────────────────── -->
+<!-- ── Edit Modal (bottom sheet) ─────────────────────────── -->
+<div class="modal-overlay" id="editOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal-sheet" id="editSheet">
+    <div class="modal-handle"></div>
+    <div class="modal-title">Edit Product</div>
+    <div class="modal-id" id="editProductId"></div>
+
+    <div class="form-group">
+      <label>Product Name *</label>
+      <input type="text" id="e_name" placeholder="Product name" />
+    </div>
+
+    <div class="price-row">
+      <div class="form-group">
+        <label>Selling Price (USD)</label>
+        <div class="input-prefix">
+          <span>USD</span>
+          <input type="number" step="0.01" id="e_price" placeholder="0.00" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Product Cost (RM)</label>
+        <div class="input-prefix">
+          <span>RM</span>
+          <input type="number" step="0.01" id="e_cost" placeholder="0.00" />
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea id="e_desc" placeholder="Product details…"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>eBay Product Link</label>
+      <input type="url" id="e_ebay" placeholder="https://www.ebay.com/itm/…" />
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn btn-cancel" onclick="closeEditModal()">Cancel</button>
+      <button class="btn btn-save"   id="saveEditBtn" onclick="saveEdit()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Toast ─────────────────────────────────────────────── -->
 <div id="toast"></div>
 
-<!-- ════════════════════════════════════════════════════════════
-     JAVASCRIPT
-════════════════════════════════════════════════════════════ -->
+<!-- ═══════════════════════ JAVASCRIPT ═══════════════════════ -->
 <script>
-// ── CONFIG ───────────────────────────────────────────────────
-// 🔴 IMPORTANT: Replace this with your deployed Apps Script Web App URL
+// ── CONFIG ────────────────────────────────────────────────
+// 🔴 Replace with your deployed Apps Script Web App URL
 const API_URL = "https://script.google.com/macros/s/AKfycbwyppNvDjYNUWWd2-sPmJR_JoA61eu28EIZTHNUrCNh-rGv7VFC5xKqcM0heOb7ihBl/exec";
 
-// Daily target: how many products to list per day
 const DAILY_TARGET = 5;
 
-// ── State ────────────────────────────────────────────────────
-let allProducts  = [];  // full cache from API
-let currentPage  = "dashboard";
+// ── State ─────────────────────────────────────────────────
+let allProducts = [];
+let currentPage = "dashboard";
+let editingId   = null;   // ID of product currently being edited
 
-// ── Navigation ───────────────────────────────────────────────
+// ── Navigation ────────────────────────────────────────────
 function showPage(name) {
   currentPage = name;
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
   document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
   document.getElementById("page-" + name).classList.add("active");
   document.getElementById("tab-" + name).classList.add("active");
-
-  // Refresh product list whenever Products tab is opened
   if (name === "products") renderProducts();
 }
 
-// ── Toast Notification ────────────────────────────────────────
-/**
- * Show a toast message at the bottom.
- * @param {string} msg   - Message text
- * @param {string} type  - 'success' | 'error' | ''
- */
+// ── Toast ─────────────────────────────────────────────────
 function showToast(msg, type = "") {
   const t = document.getElementById("toast");
   t.textContent = msg;
@@ -759,17 +670,15 @@ function showToast(msg, type = "") {
   t._timer = setTimeout(() => { t.className = ""; }, 2800);
 }
 
-// ── API Helpers ───────────────────────────────────────────────
-
-/** Generic GET request to Apps Script */
+// ── API ───────────────────────────────────────────────────
 async function apiGet(params) {
-  const qs = new URLSearchParams(params).toString();
+  const qs  = new URLSearchParams(params).toString();
   const res = await fetch(`${API_URL}?${qs}`);
   if (!res.ok) throw new Error("Network error: " + res.status);
   return res.json();
 }
 
-// ── Load All Products ─────────────────────────────────────────
+// ── Load Products ─────────────────────────────────────────
 async function loadProducts() {
   try {
     const data = await apiGet({ action: "getProducts" });
@@ -777,97 +686,64 @@ async function loadProducts() {
     allProducts = data.products || [];
     return allProducts;
   } catch (err) {
-    showToast("Failed to load products: " + err.message, "error");
+    showToast("Failed to load: " + err.message, "error");
     return [];
   }
 }
 
-// ── Dashboard ─────────────────────────────────────────────────
-/**
- * Refresh dashboard stats and target banner.
- * Called on app init and after any data change.
- */
+// ── Dashboard ─────────────────────────────────────────────
 async function renderDashboard() {
   document.getElementById("recentList").innerHTML =
     '<div class="loading-wrap"><div class="spinner"></div><span>Loading…</span></div>';
 
   const products = await loadProducts();
-  const today    = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+  const today    = new Date().toISOString().slice(0, 10);
 
-  const total    = products.length;
-  const listed   = products.filter(p => p.status === "LISTED").length;
-  const unlisted = total - listed;
+  const total       = products.length;
+  const listed      = products.filter(p => p.status === "LISTED").length;
+  const unlisted    = total - listed;
   const todayListed = products.filter(p => p.dateListed === today).length;
 
-  document.getElementById("statTotal").textContent   = total;
-  document.getElementById("statListed").textContent  = listed;
-  document.getElementById("statUnlisted").textContent= unlisted;
-  document.getElementById("statToday").textContent   = todayListed;
+  document.getElementById("statTotal").textContent    = total;
+  document.getElementById("statListed").textContent   = listed;
+  document.getElementById("statUnlisted").textContent = unlisted;
+  document.getElementById("statToday").textContent    = todayListed;
 
-  // Target banner
   const banner = document.getElementById("targetBanner");
   const msg    = document.getElementById("targetMsg");
   if (todayListed >= DAILY_TARGET) {
     banner.className = "target-banner achieved";
     banner.querySelector(".icon").textContent = "🎯";
-    msg.textContent  = `Target achieved! ${todayListed} / ${DAILY_TARGET} products listed today.`;
+    msg.textContent = `Target achieved! ${todayListed} / ${DAILY_TARGET} listed today.`;
   } else {
     banner.className = "target-banner not-achieved";
     banner.querySelector(".icon").textContent = "⚠️";
-    msg.textContent  = `Target not achieved. ${todayListed} / ${DAILY_TARGET} products listed today.`;
+    msg.textContent = `Target not achieved. ${todayListed} / ${DAILY_TARGET} listed today.`;
   }
 
-  // Show last 5 listed products
-  const recent = products
-    .filter(p => p.status === "LISTED")
-    .slice(-5)
-    .reverse();
-
+  const recent   = products.filter(p => p.status === "LISTED").slice(-5).reverse();
   const recentEl = document.getElementById("recentList");
-  if (recent.length === 0) {
-    recentEl.innerHTML =
-      '<div class="empty-state"><div class="empty-icon">📦</div><p>No listed products yet.</p></div>';
-  } else {
-    recentEl.innerHTML = recent.map(buildCard).join("");
-  }
+  recentEl.innerHTML = recent.length === 0
+    ? '<div class="empty-state"><div class="empty-icon">📦</div><p>No listed products yet.</p></div>'
+    : recent.map(buildCard).join("");
 }
 
-// ── Products Page ──────────────────────────────────────────────
-/**
- * Render the product list respecting current search + filter state.
- */
+// ── Products List ─────────────────────────────────────────
 function renderProducts() {
-  const query  = (document.getElementById("searchInput").value  || "").toLowerCase().trim();
+  const query  = (document.getElementById("searchInput").value || "").toLowerCase().trim();
   const filter = document.getElementById("filterSelect").value || "ALL";
 
   let products = [...allProducts];
-
-  // Filter by status
-  if (filter !== "ALL") {
-    products = products.filter(p => p.status === filter);
-  }
-
-  // Search by name
-  if (query) {
-    products = products.filter(p =>
-      (p.name || "").toLowerCase().includes(query)
-    );
-  }
+  if (filter !== "ALL") products = products.filter(p => p.status === filter);
+  if (query)  products = products.filter(p => (p.name || "").toLowerCase().includes(query));
 
   const el = document.getElementById("productList");
-  if (products.length === 0) {
-    el.innerHTML =
-      '<div class="empty-state"><div class="empty-icon">🔍</div><p>No products match your search.</p></div>';
-    return;
-  }
-  el.innerHTML = products.map(buildCard).join("");
+  el.innerHTML = products.length === 0
+    ? '<div class="empty-state"><div class="empty-icon">🔍</div><p>No products match.</p></div>'
+    : products.map(buildCard).join("");
 }
 
-// ── Build a Product Card ──────────────────────────────────────
-/**
- * Returns an HTML string for a product card.
- * @param {Object} p - product object
- */
+// ── Build Card HTML ───────────────────────────────────────
 function buildCard(p) {
   const isListed = p.status === "LISTED";
   const badge    = isListed
@@ -882,38 +758,41 @@ function buildCard(p) {
          </svg>eBay</a>`
     : "";
 
-  // Build supplier chips (WhatsApp-aware)
   const supplierFields = [p.supplier1, p.supplier2, p.supplier3, p.supplier4, p.supplier5];
   const supplierChips  = supplierFields
-    .filter(s => s && s.trim() !== "")
+    .filter(s => s && s.trim())
     .map((s, i) => {
-      const href = s.startsWith("http") ? s : `https://wa.me/${s.replace(/\D/g, "")}`;
+      const href = s.startsWith("http") ? s : `https://wa.me/${s.replace(/\D/g,"")}`;
       return `<a href="${escHtml(href)}" target="_blank" rel="noopener" class="supplier-chip">
         <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
           <path d="M11.99 0C5.373 0 .002 5.373.002 11.99c0 2.117.554 4.099 1.522 5.821L0 24l6.335-1.652A11.944 11.944 0 0011.99 24C18.607 24 24 18.607 24 11.99 24 5.373 18.607 0 11.99 0zm0 21.818a9.826 9.826 0 01-5.011-1.375l-.36-.214-3.728.979 1.001-3.647-.233-.373A9.826 9.826 0 012.182 11.99c0-5.41 4.402-9.81 9.81-9.81 5.407 0 9.808 4.4 9.808 9.81 0 5.407-4.401 9.808-9.81 9.808z"/>
-        </svg>
-        S${i + 1}
-      </a>`;
-    })
-    .join("");
+        </svg>S${i+1}</a>`;
+    }).join("");
 
   const markBtn = !isListed
-    ? `<button class="btn btn-listed" onclick="markAsListed('${escHtml(p.id)}')">
-         ✓ Mark Listed
-       </button>`
+    ? `<button class="btn btn-listed" onclick="markAsListed('${escHtml(p.id)}')">✓ Mark Listed</button>`
     : "";
+
+  // Edit button — always visible
+  const editBtn = `<button class="btn btn-edit" onclick="openEditModal('${escHtml(p.id)}')">
+    <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/>
+      <path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/>
+    </svg>Edit</button>`;
 
   const copyBtn = `<button class="btn btn-copy" onclick="copyName('${escHtml(p.name)}')">
     <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
       <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
-    </svg>
-    Copy
-  </button>`;
+    </svg>Copy</button>`;
 
   const dateInfo = isListed && p.dateListed
     ? `<span class="card-date">Listed: ${p.dateListed}</span>`
     : `<span class="card-date">Created: ${p.dateCreated || ""}</span>`;
+
+  // Price display: USD prominent, RM cost small below
+  const usdVal  = p.price ? `$${parseFloat(p.price).toFixed(2)}` : "—";
+  const costVal = p.cost  ? `Cost: RM ${parseFloat(p.cost).toFixed(2)}` : "";
 
   return `
   <div class="product-card">
@@ -922,7 +801,10 @@ function buildCard(p) {
         <div class="card-id">${escHtml(p.id)}</div>
         <div class="card-name">${escHtml(p.name || "Untitled")}</div>
       </div>
-      <div class="card-price">RM ${parseFloat(p.price || 0).toFixed(2)}</div>
+      <div class="card-prices">
+        <div class="card-price-usd">${usdVal}</div>
+        ${costVal ? `<div class="card-price-rm">${escHtml(costVal)}</div>` : ""}
+      </div>
     </div>
     <div class="card-meta">
       ${badge}
@@ -932,28 +814,21 @@ function buildCard(p) {
     ${supplierChips ? `<div class="supplier-chips">${supplierChips}</div>` : ""}
     <div class="card-actions" style="margin-top:10px">
       ${markBtn}
+      ${editBtn}
       ${copyBtn}
     </div>
   </div>`;
 }
 
-// ── Mark as Listed ────────────────────────────────────────────
-/**
- * Call API to mark a product as LISTED,
- * then refresh the local cache and re-render.
- */
+// ── Mark as Listed ────────────────────────────────────────
 async function markAsListed(id) {
   try {
     showToast("Updating…", "");
     const data = await apiGet({ action: "updateStatus", id });
     if (!data.success) throw new Error(data.error);
     showToast("Marked as LISTED ✓", "success");
-    // Update local cache immediately for snappy UI
     const p = allProducts.find(x => x.id === id);
-    if (p) {
-      p.status     = "LISTED";
-      p.dateListed = new Date().toISOString().slice(0, 10);
-    }
+    if (p) { p.status = "LISTED"; p.dateListed = new Date().toISOString().slice(0,10); }
     renderProducts();
     renderDashboard();
   } catch (err) {
@@ -961,28 +836,100 @@ async function markAsListed(id) {
   }
 }
 
-// ── Copy Product Name ─────────────────────────────────────────
+// ── Copy Name ─────────────────────────────────────────────
 function copyName(name) {
   navigator.clipboard.writeText(name)
     .then(() => showToast(`"${name}" copied!`, "success"))
     .catch(() => showToast("Copy failed", "error"));
 }
 
-// ── Add Product Form ──────────────────────────────────────────
-/**
- * Read form fields, validate, and call addProduct API.
- */
+// ── Edit Modal ────────────────────────────────────────────
+
+/** Open the edit bottom sheet and pre-fill fields */
+function openEditModal(id) {
+  const p = allProducts.find(x => x.id === id);
+  if (!p) return;
+
+  editingId = id;
+
+  document.getElementById("editProductId").textContent = id;
+  document.getElementById("e_name").value  = p.name        || "";
+  document.getElementById("e_price").value = p.price       || "";
+  document.getElementById("e_cost").value  = p.cost        || "";
+  document.getElementById("e_desc").value  = p.description || "";
+  document.getElementById("e_ebay").value  = p.ebayLink    || "";
+
+  document.getElementById("editOverlay").classList.add("open");
+  // Prevent body scroll while modal is open
+  document.body.style.overflow = "hidden";
+}
+
+function closeEditModal() {
+  document.getElementById("editOverlay").classList.remove("open");
+  document.body.style.overflow = "";
+  editingId = null;
+}
+
+/** Close modal when clicking the dark overlay (not the sheet itself) */
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById("editOverlay")) closeEditModal();
+}
+
+/** Save edited product via API, then update local cache */
+async function saveEdit() {
+  const name = document.getElementById("e_name").value.trim();
+  if (!name) { showToast("Product name is required.", "error"); return; }
+
+  const btn = document.getElementById("saveEditBtn");
+  btn.disabled    = true;
+  btn.textContent = "Saving…";
+
+  const params = {
+    action:      "editProduct",
+    id:          editingId,
+    name,
+    price:       document.getElementById("e_price").value.trim(),
+    cost:        document.getElementById("e_cost").value.trim(),
+    description: document.getElementById("e_desc").value.trim(),
+    ebayLink:    document.getElementById("e_ebay").value.trim(),
+  };
+
+  try {
+    const data = await apiGet(params);
+    if (!data.success) throw new Error(data.error);
+
+    // Update local cache immediately (no full reload needed)
+    const p = allProducts.find(x => x.id === editingId);
+    if (p) {
+      p.name        = params.name;
+      p.price       = params.price;
+      p.cost        = params.cost;
+      p.description = params.description;
+      p.ebayLink    = params.ebayLink;
+    }
+
+    showToast("Product updated ✓", "success");
+    closeEditModal();
+    renderProducts();
+    renderDashboard();
+  } catch (err) {
+    showToast("Error: " + err.message, "error");
+  } finally {
+    btn.disabled    = false;
+    btn.textContent = "Save Changes";
+  }
+}
+
+// ── Add Product Form ──────────────────────────────────────
 async function submitProduct() {
   const name = document.getElementById("f_name").value.trim();
-  if (!name) {
-    showToast("Product name is required.", "error");
-    return;
-  }
+  if (!name) { showToast("Product name is required.", "error"); return; }
 
   const params = {
     action:      "addProduct",
     name,
     price:       document.getElementById("f_price").value.trim(),
+    cost:        document.getElementById("f_cost").value.trim(),
     description: document.getElementById("f_desc").value.trim(),
     supplier1:   document.getElementById("f_s1").value.trim(),
     supplier2:   document.getElementById("f_s2").value.trim(),
@@ -999,9 +946,8 @@ async function submitProduct() {
   try {
     const data = await apiGet(params);
     if (!data.success) throw new Error(data.error);
-    showToast(`${data.id} added successfully ✓`, "success");
+    showToast(`${data.id} added ✓`, "success");
     clearForm();
-    // Refresh data in background
     await loadProducts();
     renderDashboard();
   } catch (err) {
@@ -1013,21 +959,19 @@ async function submitProduct() {
 }
 
 function clearForm() {
-  ["f_name","f_price","f_desc","f_ebay","f_s1","f_s2","f_s3","f_s4","f_s5"]
+  ["f_name","f_price","f_cost","f_desc","f_ebay","f_s1","f_s2","f_s3","f_s4","f_s5"]
     .forEach(id => { document.getElementById(id).value = ""; });
 }
 
-// ── Utility: escape HTML to prevent XSS ──────────────────────
+// ── Escape HTML ───────────────────────────────────────────
 function escHtml(str) {
   if (!str) return "";
   return String(str)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+    .replace(/&/g,"&amp;").replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;").replace(/"/g,"&quot;");
 }
 
-// ── Event Listeners ───────────────────────────────────────────
+// ── Event Listeners ───────────────────────────────────────
 document.getElementById("searchInput").addEventListener("input", renderProducts);
 document.getElementById("filterSelect").addEventListener("change", renderProducts);
 document.getElementById("refreshBtn").addEventListener("click", async () => {
@@ -1037,19 +981,22 @@ document.getElementById("refreshBtn").addEventListener("click", async () => {
   if (currentPage === "products") renderProducts();
 });
 
-// ── Service Worker Registration ───────────────────────────────
+// Close edit modal with Escape key
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") closeEditModal();
+});
+
+// ── Service Worker ────────────────────────────────────────
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("./sw.js")
-      .then(() => console.log("[PWA] Service worker registered."))
-      .catch(err => console.warn("[PWA] SW registration failed:", err));
+      .then(() => console.log("[PWA] SW registered"))
+      .catch(err => console.warn("[PWA] SW failed:", err));
   });
 }
 
-// ── App Init ──────────────────────────────────────────────────
-(async () => {
-  await renderDashboard();
-})();
+// ── Init ──────────────────────────────────────────────────
+(async () => { await renderDashboard(); })();
 </script>
 </body>
 </html>
